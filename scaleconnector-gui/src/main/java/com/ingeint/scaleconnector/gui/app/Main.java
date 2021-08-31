@@ -350,7 +350,7 @@ public class Main {
             try {
                 UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
             } catch (Exception e) {
-                System.out.println("Substance Graphite failed to initialize");
+                logger.severe("Substance Graphite failed to initialize");
             }
             new ControllerViewSelectMode();
         });
@@ -364,7 +364,7 @@ public class Main {
             logger.severe("Error loading features");
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error loading features", "Error", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            System.exit(1);
         }
     }
 
@@ -374,7 +374,7 @@ public class Main {
         } catch (Exception e) {
             logger.severe("Error loading features");
             e.printStackTrace();
-            System.exit(0);
+            System.exit(1);
         }
     }
 
