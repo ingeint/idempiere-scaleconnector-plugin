@@ -33,7 +33,7 @@ sudo apt install socat
 socat -d -d \
   pty,raw,nonblock,echo=0,iexten=0,link=/tmp/tty.fake.slave \
   pty,raw,nonblock,echo=0,iexten=0,link=/tmp/tty.fake.master
-while :; do echo "B0+0000155 Kg054B" > /tmp/tty.fake.master; sleep 0.1; done
+while :; do echo "B0+0000155 Kg054B" > /tmp/tty.fake.master; sleep 0.2; done
 ```
 
 Running the application:

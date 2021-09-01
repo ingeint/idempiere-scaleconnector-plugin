@@ -24,18 +24,32 @@
 
 package com.ingeint.scaleconnector.gui.feature;
 
-import java.io.FileNotFoundException;
+import com.ingeint.scaleconnector.gui.app.Main;
+
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class SCUIFeature {
 
+    public static final String FEATURES_PROPERTIES_PATH = "features.properties";
+    private static Logger logger = Logger.getLogger(Main.class.getName());
+
     private static Properties properties = new Properties();
 
-    public static void load() throws FileNotFoundException, IOException {
-        properties.load(SCUIFeature.class.getClassLoader().getResourceAsStream("features.properties"));
-        properties.put("OS", System.getProperty("os.name"));
+    public static void load() throws IOException {
+        if (Files.exists(Paths.get(FEATURES_PROPERTIES_PATH))) {
+            properties.load(new FileReader(FEATURES_PROPERTIES_PATH, StandardCharsets.UTF_8));
+        } else {
+            properties.load(SCUIFeature.class.getClassLoader().getResourceAsStream(FEATURES_PROPERTIES_PATH));
+        }
+        set("OS", System.getProperty("os.name"));
     }
 
     public static String get(String key) {
@@ -48,6 +62,15 @@ public class SCUIFeature {
 
     public static void set(String key, String value) {
         properties.put(key, value);
+        save();
     }
 
+    public static synchronized void save() {
+        try {
+            properties.store(new FileOutputStream("features.properties"), "SCALE CONNECTOR");
+        } catch (IOException e) {
+            logger.severe("Error on saving properties");
+            e.printStackTrace();
+        }
+    }
 }

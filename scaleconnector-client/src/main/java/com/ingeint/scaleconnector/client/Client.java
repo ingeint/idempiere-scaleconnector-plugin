@@ -62,10 +62,8 @@ public class Client {
     private String uri;
 
     /**
-     * @param host
-     *            The Host name
-     * @param port
-     *            The Port number
+     * @param host The Host name
+     * @param port The Port number
      */
     public Client(String host, int port) {
         this.port = port;
@@ -85,8 +83,7 @@ public class Client {
     /**
      * Set protocol
      *
-     * @param protocol
-     *            Web Service Protocol
+     * @param protocol Web Service Protocol
      */
     public void setProtocol(String protocol) {
         this.protocol = protocol;
@@ -102,8 +99,7 @@ public class Client {
     /**
      * Set Web Service URI
      *
-     * @param uri
-     *            Web Service URI
+     * @param uri Web Service URI
      */
     public void setUri(String uri) {
         this.uri = uri;
@@ -117,8 +113,7 @@ public class Client {
     }
 
     /**
-     * @param port
-     *            Port to set
+     * @param port Port to set
      */
     public void setPort(int port) {
         this.port = port;
@@ -132,8 +127,7 @@ public class Client {
     }
 
     /**
-     * @param host
-     *            Host to set
+     * @param host Host to set
      */
     public void setHost(String host) {
         this.host = host;
@@ -149,8 +143,7 @@ public class Client {
     /**
      * Set timeout, default 10000
      *
-     * @param timeout
-     *            Timeout to set
+     * @param timeout Timeout to set
      */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
@@ -176,17 +169,13 @@ public class Client {
      * Sends a request to the server, the request must contain all information
      * necessary to obtain the desired response
      *
-     * @param request
-     *            The request to send
+     * @param request The request to send
      * @return The response obtained
-     * @throws SocketTimeoutException
-     *             If timeout expires before connecting
-     * @throws IOException
-     *             If an error occurred when reading from the input stream
-     * @throws ClassNotFoundException
-     *             If the returned object is of a class unknown
+     * @throws SocketTimeoutException If timeout expires before connecting
+     * @throws IOException            If an error occurred when reading from the input stream
+     * @throws ClassNotFoundException If the returned object is of a class unknown
      * @see <a href="http://code.google.com/p/json-simple/">
-     *      http://code.google.com/p/json-simple/</a>
+     * http://code.google.com/p/json-simple/</a>
      */
     public Response sendRequest(Request request) throws SocketTimeoutException, IOException, ClassNotFoundException {
         logger.info("Connecting to server");

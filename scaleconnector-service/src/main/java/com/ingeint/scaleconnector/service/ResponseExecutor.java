@@ -46,8 +46,7 @@ public class ResponseExecutor implements Runnable {
     private Server server;
 
     /**
-     * @param socket
-     *            Socket
+     * @param socket Socket
      */
     public ResponseExecutor(Socket socket) {
         this.socket = socket;
@@ -64,8 +63,7 @@ public class ResponseExecutor implements Runnable {
     /**
      * Set server
      *
-     * @param server
-     *            Server
+     * @param server Server
      */
     public void setServer(Server server) {
         this.server = server;

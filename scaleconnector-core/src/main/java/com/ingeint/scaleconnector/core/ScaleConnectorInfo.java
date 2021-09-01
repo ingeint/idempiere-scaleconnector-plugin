@@ -46,8 +46,7 @@ public class ScaleConnectorInfo {
     }
 
     /**
-     * @param key
-     *            The key whose associated value is to be returned
+     * @param key The key whose associated value is to be returned
      * @return Setting value
      * @see ScaleConnectorInfo#set(String, String)
      */
@@ -63,10 +62,8 @@ public class ScaleConnectorInfo {
     }
 
     /**
-     * @param key
-     *            The key whose associated setting value
-     * @param value
-     *            Setting
+     * @param key   The key whose associated setting value
+     * @param value Setting
      * @see ScaleConnectorInfo#get(String)
      */
     public static void set(String key, String value) {

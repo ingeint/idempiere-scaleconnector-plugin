@@ -45,8 +45,7 @@ public class ResponseBuilder {
     /**
      * Creates a response depending on the request
      *
-     * @param request
-     *            Request from client
+     * @param request Request from client
      * @return Response to send
      */
     public synchronized Response build(Request request) {

@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 
 /**
  * Reads the serial port of the scale.
- *
+ * <p>
  * To read the serial ports used JSSC,
  * http://code.google.com/p/java-simple-serial-connector/
  *
@@ -47,11 +47,10 @@ import java.util.regex.Pattern;
  * </pre>
  *
  * @see <a href="http://code.google.com/p/java-simple-serial-connector/">
- *      http://code.google.com/p/java-simple-serial-connector/</a>
+ * http://code.google.com/p/java-simple-serial-connector/</a>
  * @see <a
- *      href="http://en.wikibooks.org/wiki/Serial_Programming/RS-232_Connections"
- *      > http://en.wikibooks.org/wiki/Serial_Programming/RS-232_Connections</a>
- *
+ * href="http://en.wikibooks.org/wiki/Serial_Programming/RS-232_Connections"
+ * > http://en.wikibooks.org/wiki/Serial_Programming/RS-232_Connections</a>
  */
 public class ScaleConnector {
 
@@ -77,16 +76,11 @@ public class ScaleConnector {
     /**
      * Initial settings connection
      *
-     * @param serialPort
-     *            Serial port
-     * @param baud
-     *            Baud rate
-     * @param dataBits
-     *            Data bits
-     * @param stopBits
-     *            Stop bits
-     * @param parity
-     *            Parity
+     * @param serialPort Serial port
+     * @param baud       Baud rate
+     * @param dataBits   Data bits
+     * @param stopBits   Stop bits
+     * @param parity     Parity
      */
     public ScaleConnector(String serialPort, int baud, int dataBits, int stopBits, int parity) {
         timeout = 5000;
@@ -163,8 +157,7 @@ public class ScaleConnector {
     }
 
     /**
-     * @param Set
-     *            number of readings
+     * @param Set number of readings
      */
     public void setReadings(int readings) {
         this.readings = readings;
@@ -213,8 +206,7 @@ public class ScaleConnector {
      * Set byte count, number of bytes to read and stored in a buffer, default
      * 20
      *
-     * @param byteCount
-     *            Byte count
+     * @param byteCount Byte count
      */
     public void setByteCount(int byteCount) {
         this.byteCount = byteCount;
@@ -230,8 +222,7 @@ public class ScaleConnector {
     /**
      * Set timeout for get port value, default 10000
      *
-     * @param timeout
-     *            Timeout
+     * @param timeout Timeout
      */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
@@ -247,8 +238,7 @@ public class ScaleConnector {
     /**
      * Set communication speed
      *
-     * @param baud
-     *            Baud
+     * @param baud Baud
      */
     public void setBaud(int baud) {
         this.baud = baud;
@@ -264,8 +254,7 @@ public class ScaleConnector {
     /**
      * Set data bits
      *
-     * @param dataBits
-     *            Data bits
+     * @param dataBits Data bits
      */
     public void setDataBits(int dataBits) {
         this.dataBits = dataBits;
@@ -297,8 +286,7 @@ public class ScaleConnector {
     /**
      * Set parity
      *
-     * @param parity
-     *            Parity
+     * @param parity Parity
      */
     public void setParity(int parity) {
         this.parity = parity;
@@ -323,8 +311,7 @@ public class ScaleConnector {
     /**
      * Extracts the desired value using the start and end character
      *
-     * @param string
-     *            String to format
+     * @param string String to format
      * @return Value
      */
     private String getValue(String string) {
@@ -377,10 +364,8 @@ public class ScaleConnector {
      * the readings for select the value
      *
      * @return Value
-     * @throws SerialPortException
-     *             If an error occurred when reading from the input stream
-     * @throws SerialPortTimeoutException
-     *             If timeout expires before connecting
+     * @throws SerialPortException        If an error occurred when reading from the input stream
+     * @throws SerialPortTimeoutException If timeout expires before connecting
      */
     public synchronized String readValue() throws SerialPortException, SerialPortTimeoutException {
         HashMap<String, Integer> list = new HashMap<String, Integer>();
@@ -419,10 +404,8 @@ public class ScaleConnector {
      * Read string from the serial port
      *
      * @return String
-     * @throws SerialPortException
-     *             If an error occurred when reading from the input stream
-     * @throws SerialPortTimeoutException
-     *             If timeout expires before connecting
+     * @throws SerialPortException        If an error occurred when reading from the input stream
+     * @throws SerialPortTimeoutException If timeout expires before connecting
      */
     public synchronized String readString() throws SerialPortException, SerialPortTimeoutException {
         return new String(readBytes());
@@ -432,10 +415,8 @@ public class ScaleConnector {
      * Read bytes from the serial port
      *
      * @return Bytes
-     * @throws SerialPortTimeoutException
-     *             If an error occurred when reading from the input stream
-     * @throws SerialPortException
-     *             If timeout expires before connecting
+     * @throws SerialPortTimeoutException If an error occurred when reading from the input stream
+     * @throws SerialPortException        If timeout expires before connecting
      */
     public synchronized byte[] readBytes() throws SerialPortTimeoutException, SerialPortException {
         SerialPort sp = new SerialPort(serialPort);

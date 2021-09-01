@@ -48,8 +48,7 @@ public class Response implements Serializable {
     /**
      * Get value
      *
-     * @param key
-     *            Value name
+     * @param key Value name
      * @return Value
      */
     public String getValue(String key) {
@@ -59,10 +58,8 @@ public class Response implements Serializable {
     /**
      * Add value
      *
-     * @param key
-     *            Value name
-     * @param value
-     *            Value
+     * @param key   Value name
+     * @param value Value
      */
     public void addValue(String key, String value) {
         data.put(key, value);
@@ -85,8 +82,7 @@ public class Response implements Serializable {
     /**
      * Set status
      *
-     * @param status
-     *            ResponseStatus
+     * @param status ResponseStatus
      */
     public void setStatus(ResponseStatus status) {
         this.status = status;
@@ -102,8 +98,7 @@ public class Response implements Serializable {
     /**
      * Set server message
      *
-     * @param serverMessage
-     *            Message
+     * @param serverMessage Message
      */
     public void setServerMessage(String serverMessage) {
         this.serverMessage = serverMessage;
@@ -119,8 +114,7 @@ public class Response implements Serializable {
     /**
      * Set data
      *
-     * @param data
-     *            Data
+     * @param data Data
      */
     public void setData(HashMap<String, String> data) {
         this.data = data;
@@ -136,8 +130,7 @@ public class Response implements Serializable {
     /**
      * Set request object
      *
-     * @param request
-     *            Request
+     * @param request Request
      */
     public void setRequest(Request request) {
         this.request = request;
@@ -153,8 +146,7 @@ public class Response implements Serializable {
     /**
      * Set the date
      *
-     * @param date
-     *            Date
+     * @param date Date
      */
     public void setDate(Date date) {
         this.date = date;

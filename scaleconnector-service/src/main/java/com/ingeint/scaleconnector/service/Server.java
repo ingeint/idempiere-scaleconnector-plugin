@@ -49,8 +49,7 @@ public class Server implements Runnable {
     private int timeout;
 
     /**
-     * @param port
-     *            Port
+     * @param port Port
      */
     public Server(int port) {
         this.port = port;
@@ -69,8 +68,7 @@ public class Server implements Runnable {
     /**
      * Set port
      *
-     * @param port
-     *            Port
+     * @param port Port
      */
     public void setPort(int port) {
         this.port = port;
@@ -86,8 +84,7 @@ public class Server implements Runnable {
     /**
      * Set timeout, default 1000
      *
-     * @param timeout
-     *            Timeout
+     * @param timeout Timeout
      */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
@@ -96,8 +93,7 @@ public class Server implements Runnable {
     /**
      * Starts the execution
      *
-     * @throws IOException
-     *             If an error occurred when start server
+     * @throws IOException If an error occurred when start server
      */
     public synchronized void start() throws IOException {
         if (!thread.isAlive()) {
@@ -112,10 +108,8 @@ public class Server implements Runnable {
     /**
      * Stop server
      *
-     * @throws InterruptedException
-     *             If an error occurred when stop thread
-     * @throws IOException
-     *             If an error occurred when close server socket
+     * @throws InterruptedException If an error occurred when stop thread
+     * @throws IOException          If an error occurred when close server socket
      */
     public synchronized void stop() throws InterruptedException, IOException {
         if (thread.isAlive()) {
@@ -136,8 +130,7 @@ public class Server implements Runnable {
     /**
      * Add a response execution
      *
-     * @param responseExecutor
-     *            ResponseExecutor
+     * @param responseExecutor ResponseExecutor
      */
     public synchronized void addConnection(ResponseExecutor responseExecutor) {
         responses.add(responseExecutor);
@@ -147,8 +140,7 @@ public class Server implements Runnable {
     /**
      * Remove a response execution
      *
-     * @param responseExecutor
-     *            ResponseExecutor to remove
+     * @param responseExecutor ResponseExecutor to remove
      */
     public synchronized void removerConnection(ResponseExecutor responseExecutor) {
         responses.remove(responseExecutor);

@@ -46,8 +46,7 @@ public class Request implements Serializable {
     /**
      * Get parameter
      *
-     * @param parameter
-     *            Parameter name
+     * @param parameter Parameter name
      * @return Parameter value
      */
     public String getParameter(String parameter) {
@@ -57,10 +56,8 @@ public class Request implements Serializable {
     /**
      * Add a parameter
      *
-     * @param key
-     *            Parameter name
-     * @param parameter
-     *            Parameter value
+     * @param key       Parameter name
+     * @param parameter Parameter value
      */
     public void addParameter(String key, String parameter) {
         parameters.put(key, parameter);
@@ -76,8 +73,7 @@ public class Request implements Serializable {
     /**
      * Set RequestType
      *
-     * @param type
-     *            Request type
+     * @param type Request type
      */
     public void setType(RequestType type) {
         this.type = type;
@@ -93,8 +89,7 @@ public class Request implements Serializable {
     /**
      * Set parameters
      *
-     * @param parameters
-     *            Parameters
+     * @param parameters Parameters
      */
     public void setParameters(HashMap<String, String> parameters) {
         this.parameters = parameters;
@@ -112,8 +107,7 @@ public class Request implements Serializable {
     /**
      * Set date to requets
      *
-     * @param date
-     *            Date request
+     * @param date Date request
      */
     public void setDate(Date date) {
         this.date = date;
