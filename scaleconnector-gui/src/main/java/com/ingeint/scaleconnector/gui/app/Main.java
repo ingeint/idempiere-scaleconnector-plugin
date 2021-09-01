@@ -35,9 +35,7 @@ import jssc.SerialPortTimeoutException;
 import org.pushingpixels.substance.api.skin.SubstanceBusinessLookAndFeel;
 
 import javax.swing.*;
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Logger;
 
 public class Main {
@@ -76,7 +74,7 @@ public class Main {
         System.out.println();
     }
 
-    private static void commandScale() {
+    private static void commandRead() {
 
         try {
             ConsoleReader console = new ConsoleReader();
@@ -304,36 +302,6 @@ public class Main {
         String os = SCUIFeature.get("OS");
         System.out.println("Operative system: " + os);
         System.out.println("Port TCP Server: " + SCUIFeature.get("DEFAULT_PORT"));
-
-        try {
-            if (os.toLowerCase().contains("windows")) {
-                Process p = Runtime.getRuntime().exec("ipconfig /all");
-                InputStream out = new BufferedInputStream(p.getInputStream());
-                StringBuffer buffer = new StringBuffer();
-                int c;
-                while ((c = out.read()) != -1) {
-                    buffer.append((char) c);
-                }
-                out.close();
-                System.out.println(buffer.toString());
-            } else if (os.toLowerCase().contains("linux")) {
-                System.out.println();
-                Process p = Runtime.getRuntime().exec("ifconfig");
-                InputStream out = new BufferedInputStream(p.getInputStream());
-                StringBuffer buffer = new StringBuffer();
-                int c;
-                while ((c = out.read()) != -1) {
-                    buffer.append((char) c);
-                }
-                out.close();
-                System.out.println(buffer.toString());
-            } else {
-                logger.warning("Unknown operative system to display network configuration");
-            }
-        } catch (Exception e) {
-            logger.severe("Error, command not complete");
-            e.printStackTrace();
-        }
         System.out.println();
     }
 
@@ -392,8 +360,8 @@ public class Main {
                     case "-host":
                         commandHost();
                         break;
-                    case "-scale":
-                        commandScale();
+                    case "-read":
+                        commandRead();
                         break;
                     case "-ports":
                         commandPorts();

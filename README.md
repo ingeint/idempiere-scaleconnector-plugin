@@ -6,9 +6,16 @@ weighing, accountant, etc.)
 that communicate through the RS-232 serial port. For mor
 info [here](https://wiki.idempiere.org/en/Plugin:_Scale_Connector)
 
+## Dependencies
+
+- Java 11
+- iDempiere 8
+
 ## Components
 
 ### ScaleConnector GUI
+
+#### Development Mode
 
 Add permissions:
 
@@ -38,3 +45,14 @@ Running the application:
 Then click on `TCP Server` > `Read Port`.
 
 ![](screenshots/server-mode.png)
+
+#### Production Mode
+
+Install the application:
+
+```bash
+./gradlew install
+alias scaleconnector-gui="$PWD/scaleconnector-gui/build/install/scaleconnector-gui/bin/scaleconnector-gui"
+scaleconnector-gui -server
+```
+

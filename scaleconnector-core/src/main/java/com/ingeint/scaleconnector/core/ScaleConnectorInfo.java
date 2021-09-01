@@ -34,7 +34,7 @@ public class ScaleConnectorInfo {
 
     public static final String COMPONENT_NAME = "Scale Connector";
     public static final String VENDOR = "INGEINT http://ingeint.com";
-    public static final String VERSION = "3.0.0";
+    public static final String VERSION = "4.1.2";
 
     private static Properties properties = new Properties();
 
