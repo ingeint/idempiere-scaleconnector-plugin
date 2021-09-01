@@ -20,8 +20,7 @@ info [here](https://wiki.idempiere.org/en/Plugin:_Scale_Connector)
 Add permissions:
 
 ```bash
-sudo gpasswd -a $(whoami) dialout
-sudo gpasswd -a $(whoami) uucp
+sudo usermod -a -G dialout $(whoami)
 ```
 
 > Sometimes it's necessary to restart the session after adding new users to a group
@@ -48,21 +47,6 @@ Then click on `TCP Server` > `Read Port`.
 
 #### Production Mode
 
-Add permissions:
-
-```bash
-sudo gpasswd -a $(whoami) dialout
-sudo gpasswd -a $(whoami) uucp
-```
-
-> Sometimes it's necessary to restart the session after adding new users to a group
-
-Check physical serial port:
-
-```bash
-setserial -g /dev/ttyS*
-```
-
 Install the application:
 
 ```bash
@@ -77,7 +61,13 @@ Check help:
 scaleconnector-gui -h
 ```
 
-Run the TCP server:
+Running on GUI mode:
+
+```bash
+scaleconnector-gui gui
+```
+
+Running on console TCP server mode:
 
 ```bash
 scaleconnector-gui server -p 5000
@@ -86,10 +76,23 @@ scaleconnector-gui server -p 5000
 Creating a linux service:
 
 ```bash
+sudo mkdir -p /var/lib/scaleconnector-gui
 sudo cp ./scripts/scaleconnector.service /etc/systemd/system/scaleconnector.service
 sudo systemctl daemon-reload
 sudo systemctl enable scaleconnector
 sudo systemctl start scaleconnector
-sudo systemctl status scaleconnector
-sudo systemctl stop scaleconnector
+```
+
+## Other useful commands
+
+Check physical serial port:
+
+```bash
+setserial -g /dev/ttyS*
+```
+
+Check logs for servers:
+
+```bash
+tail -f /var/log/syslog | grep scaleconnector
 ```

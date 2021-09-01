@@ -9,7 +9,7 @@ ExecStart=/opt/scaleconnector-gui/bin/scaleconnector-gui server -p 5000
 Restart=on-failure
 RestartSec=10
 KillMode=process
-WorkingDirectory=/opt/scaleconnector-gui
+WorkingDirectory=/var/lib/scaleconnector-gui
 
 [Install]
 WantedBy=multi-user.target
