@@ -1,0 +1,15 @@
+Description=Scale Connector
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/scaleconnector-gui/bin/scaleconnector-gui server -p 5000
+Restart=on-failure
+RestartSec=10
+KillMode=process
+WorkingDirectory=/opt/scaleconnector-gui
+
+[Install]
+WantedBy=multi-user.target

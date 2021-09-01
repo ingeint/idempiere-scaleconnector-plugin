@@ -22,9 +22,9 @@ Add permissions:
 ```bash
 sudo gpasswd -a $(whoami) dialout
 sudo gpasswd -a $(whoami) uucp
-sudo gpasswd -a $(whoami) lock
-sudo gpasswd -a $(whoami) tty
 ```
+
+> Sometimes it's necessary to restart the session after adding new users to a group
 
 Emulating a serial port on linux:
 
@@ -48,11 +48,48 @@ Then click on `TCP Server` > `Read Port`.
 
 #### Production Mode
 
+Add permissions:
+
+```bash
+sudo gpasswd -a $(whoami) dialout
+sudo gpasswd -a $(whoami) uucp
+```
+
+> Sometimes it's necessary to restart the session after adding new users to a group
+
+Check physical serial port:
+
+```bash
+setserial -g /dev/ttyS*
+```
+
 Install the application:
 
 ```bash
-./gradlew install
-alias scaleconnector-gui="$PWD/scaleconnector-gui/build/install/scaleconnector-gui/bin/scaleconnector-gui"
-scaleconnector-gui -server
+./gradlew build
+sudo unzip -d /opt/ ./scaleconnector-gui/build/distributions/scaleconnector-gui.zip
+sudo ln -s /opt/scaleconnector-gui/bin/scaleconnector-gui /usr/local/bin/scaleconnector-gui
 ```
 
+Check help:
+
+```bash
+scaleconnector-gui -h
+```
+
+Run the TCP server:
+
+```bash
+scaleconnector-gui server -p 5000
+```
+
+Creating a linux service:
+
+```bash
+sudo cp ./scripts/scaleconnector.service /etc/systemd/system/scaleconnector.service
+sudo systemctl daemon-reload
+sudo systemctl enable scaleconnector
+sudo systemctl start scaleconnector
+sudo systemctl status scaleconnector
+sudo systemctl stop scaleconnector
+```

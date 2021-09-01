@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 public class SCUIFeature {
 
-    public static final String FEATURES_PROPERTIES_PATH = "features.properties";
+    public static final String FEATURES_PROPERTIES_PATH = "scaleconnector.properties";
     private static Logger logger = Logger.getLogger(Main.class.getName());
 
     private static Properties properties = new Properties();
@@ -67,7 +67,7 @@ public class SCUIFeature {
 
     public static synchronized void save() {
         try {
-            properties.store(new FileOutputStream("features.properties"), "SCALE CONNECTOR");
+            properties.store(new FileOutputStream(FEATURES_PROPERTIES_PATH), FEATURES_PROPERTIES_PATH);
         } catch (IOException e) {
             logger.severe("Error on saving properties");
             e.printStackTrace();
