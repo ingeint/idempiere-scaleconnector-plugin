@@ -84,6 +84,25 @@ Executing a read request:
 http :8080/read < ./scaleconnector-rest/read-request.json
 ```
 
+Installing the application:
+
+```shell
+./gradlew bootJar
+sudo mkdir -p /opt/scaleconnector-rest
+sudo cp ./scaleconnector-rest/build/libs/scaleconnector-rest.jar /opt/scaleconnector-rest/
+java -jar /opt/scaleconnector-rest/scaleconnector-rest.jar --server.port=8080
+```
+
+Creating a linux service:
+
+```shell
+sudo mkdir -p /var/lib/scaleconnector-rest
+sudo cp ./scaleconnector-rest/scaleconnector-rest.service /etc/systemd/system/scaleconnector-rest.service
+sudo systemctl daemon-reload
+sudo systemctl enable scaleconnector-rest
+sudo systemctl start scaleconnector-rest
+```
+
 ## Other useful commands
 
 Emulating a serial port on linux:

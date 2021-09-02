@@ -1,0 +1,15 @@
+Description=Scale Connector
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=java -jar /opt/scaleconnector-rest/scaleconnector-rest.jar --server.port=8080
+Restart=on-failure
+RestartSec=10
+KillMode=process
+WorkingDirectory=/var/lib/scaleconnector-rest
+
+[Install]
+WantedBy=multi-user.target
