@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "idempiere-scaleconnector-plugin"
-include("scaleconnector-core", "scaleconnector-client", "scaleconnector-service", "scaleconnector-gui")
+include("scaleconnector-core", "scaleconnector-client", "scaleconnector-service", "scaleconnector-gui", "scaleconnector-rest")

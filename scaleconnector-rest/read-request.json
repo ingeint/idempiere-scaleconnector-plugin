@@ -1,0 +1,19 @@
+{
+  "type": "READ_PORT",
+  "parameters": {
+    "bytecount": "16",
+    "baud": "9600",
+    "databits": "8",
+    "stopbits": "1",
+    "parity": "0",
+    "serialport": "/tmp/tty.fake.slave",
+    "startcharacter": "43",
+    "endcharacter": "32",
+    "readings": "2",
+    "stabilitypos": "0",
+    "floatingpoint": "2",
+    "stability": "43",
+    "startcut": "0",
+    "endcut": "7"
+  }
+}

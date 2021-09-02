@@ -31,9 +31,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
-import java.net.*;
-import java.nio.charset.Charset;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.logging.Logger;
@@ -70,7 +74,7 @@ public class Client {
         this.host = host;
         timeout = 10000;
         protocol = "http";
-        uri = "/scaleconnector_webservice/get_response";
+        uri = "/read";
     }
 
     /**
@@ -181,35 +185,23 @@ public class Client {
         logger.info("Connecting to server");
         Response response = null;
         if (isWebService) {
+            String url = String.format("%s://%s:%s%s", protocol, host, port, uri);
 
-            String parameters = "requestType=" + request.getType().toString();
+            RestClient restClient = new RestClient();
 
-            Iterator<String> i = request.getParameters().keySet().iterator();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("type", request.getType().toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            System.out.println(sdf.format(request.getDate()));
+            jsonObject.put("date", sdf.format(request.getDate()));
+            jsonObject.put("parameters", request.getParameters());
 
-            while (i.hasNext()) {
-                String p = i.next();
-                parameters += "&" + p + "=" + request.getParameter(p);
-            }
-
-            String url = String.format("%s://%s:%s%s?%s", protocol, host, port, uri, parameters);
-
-            URL urlInput = new URL(url);
-            URLConnection con = urlInput.openConnection();
-            con.setConnectTimeout(timeout);
-            con.setReadTimeout(timeout);
-
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(con.getInputStream(), Charset.forName("ISO-8859-1")));
-            String temp = "";
-            String file = "";
-            while ((temp = buffer.readLine()) != null) {
-                file = file + temp;
-            }
-
-            JSONParser parser = new JSONParser();
+            String jsonResponse = restClient.sendRequest(url, jsonObject.toJSONString());
 
             try {
-                JSONObject obj = (JSONObject) parser.parse(file);
-                JSONObject objData = (JSONObject) parser.parse(obj.get("data").toString());
+                JSONParser jsonParser = new JSONParser();
+                JSONObject obj = (JSONObject) jsonParser.parse(jsonResponse);
+                JSONObject objData = (JSONObject) jsonParser.parse(obj.get("data").toString());
 
                 response = new Response();
                 response.setServerMessage(obj.get("serverMessage").toString());

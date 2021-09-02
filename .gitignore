@@ -4,5 +4,8 @@
 # Ignore Gradle build output directory
 build
 
-#IntelliJ
+# IntelliJ
 .idea
+
+# Project
+scaleconnector.properties

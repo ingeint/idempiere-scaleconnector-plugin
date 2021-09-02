@@ -43,6 +43,7 @@ public class Response implements Serializable {
 
     public Response() {
         data = new HashMap<String, String>();
+        status = ResponseStatus.SUCCESS;
     }
 
     /**
