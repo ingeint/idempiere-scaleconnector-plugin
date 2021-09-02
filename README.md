@@ -68,20 +68,20 @@ sudo apt install httpie
 Running the application as developer:
 
 ```shell
-./gradlew bootRun --args="--server.port=8080"
-http :8080/actuator/health
+./gradlew bootRun --args="--server.port=9090"
+http :9090/actuator/health
 ```
 
 Executing a test request:
 
 ```shell
-http :8080/read type=TEST date=$(date +"%Y-%m-%dT%T")
+http :9090/read type=TEST date=$(date +"%Y-%m-%dT%T")
 ```
 
 Executing a read request:
 
 ```shell
-http :8080/read < ./scaleconnector-rest/read-request.json
+http :9090/read < ./scaleconnector-rest/read-request.json
 ```
 
 Installing the application:
@@ -90,7 +90,7 @@ Installing the application:
 ./gradlew bootJar
 sudo mkdir -p /opt/scaleconnector-rest
 sudo cp ./scaleconnector-rest/build/libs/scaleconnector-rest.jar /opt/scaleconnector-rest/
-java -jar /opt/scaleconnector-rest/scaleconnector-rest.jar --server.port=8080
+java -jar /opt/scaleconnector-rest/scaleconnector-rest.jar --server.port=9090
 ```
 
 Creating a linux service:
@@ -105,11 +105,10 @@ sudo systemctl start scaleconnector-rest
 
 ### ScaleConnector Plugin
 
-Building the plugin:
+Copying and Building plugin:
 
 ```shell
-cd ./scaleconnector-plugin
-./build
+./build-plugin
 ```
 
 > The env variable `IDEMPIERE_REPOSITORY` is needed for building the plugin.

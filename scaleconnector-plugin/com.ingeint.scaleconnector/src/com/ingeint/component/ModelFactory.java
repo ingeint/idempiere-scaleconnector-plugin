@@ -19,6 +19,8 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomModelFactory;
+import com.ingeint.model.MSCScale;
+import com.ingeint.model.MSCServerSettings;
 
 /**
  * Model Factory
@@ -36,6 +38,8 @@ public class ModelFactory extends CustomModelFactory {
 	 */
 	@Override
 	protected void initialize() {
+		registerModel(MSCScale.Table_Name, MSCScale.class);
+		registerModel(MSCServerSettings.Table_Name, MSCServerSettings.class);
 	}
 
 }

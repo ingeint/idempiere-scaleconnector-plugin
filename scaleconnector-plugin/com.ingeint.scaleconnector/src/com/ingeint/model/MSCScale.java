@@ -1,4 +1,6 @@
 /**
+ * This file is part of Scale Connector.
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -12,34 +14,32 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * Copyright (C) 2021 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
+ * 
+ * Copyright (C) 2015 INGEINT <http://www.ingeint.com>.
+ * Copyright (C) Contributors.
+ * 
+ * Contributors:
+ *    - 2015 Saúl Piña <spina@ingeint.com>.
  */
 
-package com.ingeint.component;
+package com.ingeint.model;
 
-import com.ingeint.base.CustomProcessFactory;
-import com.ingeint.process.ScaleConnectorTest;
-import com.ingeint.process.ScaleServerTest;
+import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
- * Process Factory
+ * Custom Model X_SC_Scale
  */
-public class ProcessFactory extends CustomProcessFactory {
+public class MSCScale extends X_SC_Scale {
 
-	/**
-	 * For initialize class. Register the process to build
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerProcess(PPrintPluginInfo.class);
-	 * }
-	 * </pre>
-	 */
-	@Override
-	protected void initialize() {
-		registerProcess(ScaleServerTest.class);
-		registerProcess(ScaleConnectorTest.class);
+	private static final long serialVersionUID = 7338168777257068987L;
+
+	public MSCScale(Properties ctx, int SC_Scale_ID, String trxName) {
+		super(ctx, SC_Scale_ID, trxName);
+	}
+
+	public MSCScale(Properties ctx, ResultSet rs, String trxName) {
+		super(ctx, rs, trxName);
 	}
 
 }

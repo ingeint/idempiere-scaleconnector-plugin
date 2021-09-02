@@ -25,5 +25,13 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/freemarker.jar
+ lib/freemarker.jar,
+ lib/json-simple.jar,
+ lib/okhttp.jar,
+ lib/scaleconnector-client.jar,
+ lib/scaleconnector-core.jar,
+ lib/annotations.jar,
+ lib/kotlin-stdlib.jar,
+ lib/kotlin-stdlib-common.jar,
+ lib/okio.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

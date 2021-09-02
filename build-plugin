@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+./gradlew build
+mkdir -p ./scaleconnector-plugin/com.ingeint.scaleconnector/lib
+cp ./scaleconnector-client/build/libs/scaleconnector-client.jar ./scaleconnector-plugin/com.ingeint.scaleconnector/lib/
+cp ./scaleconnector-core/build/libs/scaleconnector-core.jar ./scaleconnector-plugin/com.ingeint.scaleconnector/lib/
+
+cd ./scaleconnector-plugin && ./build
