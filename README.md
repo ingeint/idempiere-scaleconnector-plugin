@@ -103,6 +103,19 @@ sudo systemctl enable scaleconnector-rest
 sudo systemctl start scaleconnector-rest
 ```
 
+### ScaleConnector Plugin
+
+Building the plugin:
+
+```shell
+cd ./scaleconnector-plugin
+./build
+```
+
+> The env variable `IDEMPIERE_REPOSITORY` is needed for building the plugin.
+
+Output `./scaleconnector-plugin/com.ingeint.scaleconnector.targetplatform/target/`
+
 ## Other useful commands
 
 Emulating a serial port on linux:
