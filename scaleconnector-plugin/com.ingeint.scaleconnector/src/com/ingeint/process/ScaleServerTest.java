@@ -26,6 +26,7 @@ package com.ingeint.process;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.net.URISyntaxException;
 import java.util.Date;
 
 import org.compiere.process.ProcessInfoParameter;
@@ -81,8 +82,11 @@ public class ScaleServerTest extends CustomProcess {
 	 * @throws IOException            If an error occurred when reading from the
 	 *                                input stream
 	 * @throws ClassNotFoundException If the returned object is of a class unknown
+	 * @throws InterruptedException
+	 * @throws URISyntaxException
 	 */
-	public String connectServerSC() throws SocketTimeoutException, ClassNotFoundException, IOException {
+	public String connectServerSC() throws SocketTimeoutException, ClassNotFoundException, IOException,
+			URISyntaxException, InterruptedException {
 		Client client = new Client(record.getHostAddress(), record.getHostPort());
 		client.setTimeout(record.getSecondsTimeout() * 1000);
 		client.setWebService(record.isWebService());

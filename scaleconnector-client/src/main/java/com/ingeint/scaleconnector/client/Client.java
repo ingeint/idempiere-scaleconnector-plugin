@@ -37,6 +37,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -181,7 +182,7 @@ public class Client {
      * @see <a href="http://code.google.com/p/json-simple/">
      * http://code.google.com/p/json-simple/</a>
      */
-    public Response sendRequest(Request request) throws SocketTimeoutException, IOException, ClassNotFoundException {
+    public Response sendRequest(Request request) throws SocketTimeoutException, IOException, ClassNotFoundException, URISyntaxException, InterruptedException {
         logger.info("Connecting to server");
         Response response = null;
         if (isWebService) {
@@ -208,7 +209,6 @@ public class Client {
                 response.setDate(Calendar.getInstance().getTime());
                 response.setStatus(ResponseStatus.valueOf(obj.get("status").toString().toUpperCase()));
 
-                @SuppressWarnings("unchecked")
                 Iterator<String> i2 = objData.keySet().iterator();
 
                 while (i2.hasNext()) {

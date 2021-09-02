@@ -26,6 +26,7 @@ package com.ingeint.process;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -59,8 +60,11 @@ public class ScaleConnectorClient {
 	 * @throws IOException            If an error occurred when reading from the
 	 *                                input stream
 	 * @throws ClassNotFoundException If the returned object is of a class unknown
+	 * @throws InterruptedException
+	 * @throws URISyntaxException
 	 */
-	public Response sendRequest() throws SocketTimeoutException, ClassNotFoundException, IOException {
+	public Response sendRequest() throws SocketTimeoutException, ClassNotFoundException, IOException,
+			URISyntaxException, InterruptedException {
 		HashMap<String, String> parameters = new HashMap<String, String>();
 
 		parameters.put("baud", String.valueOf(recordScale.getBaud()));

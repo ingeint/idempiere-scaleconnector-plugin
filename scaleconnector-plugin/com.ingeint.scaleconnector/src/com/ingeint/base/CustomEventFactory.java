@@ -91,7 +91,8 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 	 * Register the table events
 	 *
 	 * @param eventTopic   Event type. Example: IEventTopics.DOC_AFTER_COMPLETE
-	 * @param filter       Filter: Table name for tables, UUID or ClassName for processes
+	 * @param filter       Filter: Table name for tables, UUID or ClassName for
+	 *                     processes
 	 * @param eventHandler Event listeners
 	 */
 	protected void registerEvent(String eventTopic, String filter, Class<? extends CustomEvent> eventHandler) {

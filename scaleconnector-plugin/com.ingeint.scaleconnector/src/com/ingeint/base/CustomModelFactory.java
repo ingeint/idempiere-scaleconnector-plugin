@@ -89,7 +89,8 @@ public abstract class CustomModelFactory implements IModelFactory {
 			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), Record_ID, trxName });
 			log.info(String.format("Model created -> %s [Table Name: %s]", clazz.getName(), tableName));
 		} catch (Exception e) {
-			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(), tableName, e));
+			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(),
+					tableName, e));
 			throw new AdempiereException(e);
 		}
 
@@ -111,7 +112,8 @@ public abstract class CustomModelFactory implements IModelFactory {
 			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), rs, trxName });
 			log.info(String.format("Model created -> %s [Table Name: %s]", clazz.getName(), tableName));
 		} catch (Exception e) {
-			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(), tableName, e));
+			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(),
+					tableName, e));
 			throw new AdempiereException(e);
 		}
 

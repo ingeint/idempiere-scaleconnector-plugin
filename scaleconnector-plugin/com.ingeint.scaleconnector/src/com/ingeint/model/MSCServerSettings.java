@@ -37,8 +37,7 @@ public class MSCServerSettings extends X_SC_ServerSettings {
 
 	private static final long serialVersionUID = -713397209151149360L;
 
-	public MSCServerSettings(Properties ctx, int SC_ServerSettings_ID,
-			String trxName) {
+	public MSCServerSettings(Properties ctx, int SC_ServerSettings_ID, String trxName) {
 		super(ctx, SC_ServerSettings_ID, trxName);
 	}
 
@@ -54,8 +53,7 @@ public class MSCServerSettings extends X_SC_ServerSettings {
 	}
 
 	public List<MSCScale> getLines() {
-		return new Query(getCtx(), I_SC_Scale.Table_Name,
-				"SC_ServerSettings_ID=?", get_TrxName())
+		return new Query(getCtx(), I_SC_Scale.Table_Name, "SC_ServerSettings_ID=?", get_TrxName())
 				.setParameters(get_ID()).list();
 	}
 

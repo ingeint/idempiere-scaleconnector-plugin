@@ -11,8 +11,6 @@ dependencies {
 
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
 
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
-
     implementation(project(":scaleconnector-core"))
 }
 

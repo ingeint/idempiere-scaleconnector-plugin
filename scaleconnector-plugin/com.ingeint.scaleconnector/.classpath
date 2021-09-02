@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="lib/annotations.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/kotlin-stdlib.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/kotlin-stdlib-common.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/okio.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/okhttp.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/json-simple.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/scaleconnector-client.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/json-simple.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/scaleconnector-core.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

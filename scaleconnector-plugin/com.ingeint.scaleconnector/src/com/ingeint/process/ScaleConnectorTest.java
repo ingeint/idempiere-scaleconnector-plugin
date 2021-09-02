@@ -26,6 +26,7 @@ package com.ingeint.process;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.net.URISyntaxException;
 
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.util.AdempiereUserError;
@@ -84,8 +85,11 @@ public class ScaleConnectorTest extends CustomProcess {
 	 * @throws IOException            If an error occurred when reading from the
 	 *                                input stream
 	 * @throws ClassNotFoundException If the returned object is of a class unknown
+	 * @throws InterruptedException
+	 * @throws URISyntaxException
 	 */
-	public String connectServer() throws SocketTimeoutException, ClassNotFoundException, IOException {
+	public String connectServer() throws SocketTimeoutException, ClassNotFoundException, IOException,
+			URISyntaxException, InterruptedException {
 
 		ScaleConnectorClient scc = new ScaleConnectorClient(recordScale);
 		Response response = scc.sendRequest();

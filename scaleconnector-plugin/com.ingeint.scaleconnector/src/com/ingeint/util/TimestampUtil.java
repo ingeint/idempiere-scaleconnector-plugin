@@ -77,7 +77,9 @@ public class TimestampUtil {
 	 * @return String date
 	 */
 	public static String toString(Timestamp timestamp, String targetFormat) {
-		return timestamp == null ? null : timestamp.toLocalDateTime().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern(targetFormat));
+		return timestamp == null ? null
+				: timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+						.format(DateTimeFormatter.ofPattern(targetFormat));
 	}
 
 	/**

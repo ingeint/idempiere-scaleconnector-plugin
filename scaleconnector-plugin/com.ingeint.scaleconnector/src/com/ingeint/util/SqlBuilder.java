@@ -76,7 +76,8 @@ public class SqlBuilder {
 
 		StringBuilder copy = new StringBuilder(sql);
 
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
+		try (BufferedReader reader = new BufferedReader(
+				new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				processStatement(line, copy);
