@@ -157,7 +157,7 @@ public class ScaleConnector {
     }
 
     /**
-     * @param Set number of readings
+     * @param Number of readings
      */
     public void setReadings(int readings) {
         this.readings = readings;
@@ -314,13 +314,21 @@ public class ScaleConnector {
      * @param string String to format
      * @return Value
      */
-    private String getValue(String string) {
-        char sc = (char) startCharacter;
-        char ec = (char) endCharacter;
-        String patternString = String.format("\\%c([^\\%c\\%c]+)\\%c", sc, sc, ec, ec);
+    public Result getValue(String string) {
+        String sc = String.valueOf((char) startCharacter);
+        if (sc.matches("[^a-zA-Z]")){
+            sc = "\\"+sc;
+        }
+
+        String ec = String.valueOf((char) endCharacter);
+        if (ec.matches("[^a-zA-Z]")){
+            ec = "\\"+ec;
+        }
+
+        String patternString = String.format("%s([^%s%s]+)%s", sc, sc, ec, ec);
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(string);
-        HashMap<String, Integer> list = new HashMap<String, Integer>();
+        HashMap<Result, Integer> list = new HashMap<>();
 
         String raw = "";
         String value = "";
@@ -330,26 +338,27 @@ public class ScaleConnector {
             raw = matcher.group(0);
             stability = raw.substring(stabilityValuePosition, stabilityValuePosition + 1);
             value = raw.substring(startCutPosition, endCutPosition + 1).replaceAll("[^0-9]", "");
+            value = String.valueOf(Integer.parseInt(value));
 
             if (floatingPoint > 0)
                 value = String.valueOf(Integer.parseInt(value) / Math.pow(10, floatingPoint));
 
-            value = stability + value;
+            Result result = new Result(raw, value, stability);
 
-            if (list.containsKey(value)) {
-                list.put(value, list.get(value) + 1);
+            if (list.containsKey(result)) {
+                list.put(result, list.get(result) + 1);
             } else {
-                list.put(value, 1);
+                list.put(result, 1);
             }
         }
 
-        Iterator<String> iterator = list.keySet().iterator();
+        Iterator<Result> iterator = list.keySet().iterator();
 
         int max = 0;
-        String keyMax = "";
+        Result keyMax = null;
 
         while (iterator.hasNext()) {
-            String stringTemp = (String) iterator.next();
+            Result stringTemp = iterator.next();
             if (list.get(stringTemp) > max) {
                 max = list.get(stringTemp);
                 keyMax = stringTemp;
@@ -368,36 +377,39 @@ public class ScaleConnector {
      * @throws SerialPortTimeoutException If timeout expires before connecting
      */
     public synchronized String readValue() throws SerialPortException, SerialPortTimeoutException {
-        HashMap<String, Integer> list = new HashMap<String, Integer>();
+        HashMap<Result, Integer> list = new HashMap<>();
 
         for (int i = 0; i < readings; i++) {
-            String value = getValue(readString());
-            if (list.containsKey(value)) {
-                list.put(value, list.get(value) + 1);
+            Result result = getValue(readString());
+            if (list.containsKey(result)) {
+                list.put(result, list.get(result) + 1);
             } else {
-                list.put(value, 1);
+                list.put(result, 1);
             }
         }
-        Iterator<String> iterator = list.keySet().iterator();
+        Iterator<Result> iterator = list.keySet().iterator();
 
         int max = 0;
-        String keyMax = "";
+        Result keyMax = null;
 
         while (iterator.hasNext()) {
-            String stringTemp = (String) iterator.next();
+            Result stringTemp = iterator.next();
             if (list.get(stringTemp) > max) {
                 max = list.get(stringTemp);
                 keyMax = stringTemp;
             }
         }
 
-        if (!keyMax.isEmpty() && keyMax.charAt(0) == stabilityValue) {
+        if(keyMax == null)
+            return "";
+
+        if (keyMax.getStability().equals(stabilityValue)) {
             isStableValue = true;
         } else {
             isStableValue = false;
         }
 
-        return keyMax.isEmpty() ? "" : keyMax.substring(1);
+        return keyMax.getValue();
     }
 
     /**

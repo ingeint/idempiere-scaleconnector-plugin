@@ -141,3 +141,9 @@ Check logs for servers:
 ```shell
 tail -f /var/log/syslog | grep scaleconnector
 ```
+
+Run test:
+
+```shell
+./gradlew test
+```
