@@ -403,7 +403,7 @@ public class ScaleConnector {
         if(keyMax == null)
             return "";
 
-        if (keyMax.getStability().equals(stabilityValue)) {
+        if (keyMax.getStability().equals(String.valueOf((char)stabilityValue))) {
             isStableValue = true;
         } else {
             isStableValue = false;
