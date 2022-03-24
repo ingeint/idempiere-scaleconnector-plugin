@@ -42,6 +42,24 @@ class ScaleConnectorTest {
     }
 
     @Test
+    void getValueForComma() {
+        ScaleConnector scaleConnector = new ScaleConnector("", 0,0,0,0);
+        scaleConnector.setStartCharacter(',');
+        scaleConnector.setEndCharacter('k');
+        scaleConnector.setStabilityValuePosition(0);
+        scaleConnector.setStartCutPosition(2);
+        scaleConnector.setEndCutPosition(8);
+        scaleConnector.setFloatingPoint(1);
+
+        String rowValue ="ST,GS,+10010.5kg";
+        Result value =  scaleConnector.getValue(rowValue);
+
+        assertThat(value.getValue()).isEqualTo("10010.5");
+        assertThat(value.toDouble()).isEqualTo(10010.5);
+        assertThat(value.getStability()).isEqualTo(",");
+    }
+
+    @Test
     void getValueForAlphaChars2() {
         ScaleConnector scaleConnector = new ScaleConnector("", 0,0,0,0);
         scaleConnector.setStartCharacter('+');
