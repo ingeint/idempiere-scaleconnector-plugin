@@ -76,4 +76,22 @@ class ScaleConnectorTest {
         assertThat(value.toDouble()).isEqualTo(3.81);
         assertThat(value.getStability()).isEqualTo("+");
     }
+
+    @Test
+    void getValueForStartCutting() {
+        ScaleConnector scaleConnector = new ScaleConnector("", 0,0,0,0);
+        scaleConnector.setStartCharacter('+');
+        scaleConnector.setEndCharacter(' ');
+        scaleConnector.setStabilityValuePosition(0);
+        scaleConnector.setStartCutPosition(1);
+        scaleConnector.setEndCutPosition(7);
+        scaleConnector.setFloatingPoint(2);
+
+        String rowValue ="Kg053A1+1000381 Kg053A1+1000381";
+        Result value =  scaleConnector.getValue(rowValue);
+
+        assertThat(value.getValue()).isEqualTo("10003.81");
+        assertThat(value.toDouble()).isEqualTo(10003.81);
+        assertThat(value.getStability()).isEqualTo("+");
+    }
 }
