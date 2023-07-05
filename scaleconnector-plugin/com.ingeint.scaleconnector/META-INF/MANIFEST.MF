@@ -3,7 +3,7 @@ Bundle-Category: idempiere-plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: ScaleConnector Plugin
 Bundle-SymbolicName: com.ingeint.scaleconnector
-Bundle-Version: 8.2.0.qualifier
+Bundle-Version: 10.0.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.apache.commons.lang3,
